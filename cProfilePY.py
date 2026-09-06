@@ -11,7 +11,6 @@ import shutil
 
 from tkinter import ttk, scrolledtext, filedialog
 
-
 WINDOW_TITLE = "Python Profiler"
 WINDOW_SIZE = "750x700"
 SORT_OPTIONS = ("cumtime", "time", "calls", "name", "nfl")
@@ -22,7 +21,6 @@ LIMIT_MAX = 100
 OUTPUT_HEIGHT = 15
 PROGRESS_BAR_LENGTH = 400
 
-
 def get_python_executable():
     if getattr(sys, "frozen", False):
         python_exe = shutil.which("python") or shutil.which("python3")
@@ -30,7 +28,6 @@ def get_python_executable():
             raise RuntimeError("Python interpreter not found in PATH")
         return python_exe
     return sys.executable
-
 
 class ProfilerApp:
     def __init__(self, root):
