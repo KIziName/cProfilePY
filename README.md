@@ -49,4 +49,4 @@ A lightweight GUI wrapper for Python's built-in cProfile profiler, built with Tk
 
 ## Требования
 - ***Python 3.6+*** 
-- При сборке в EXE – требуется наличие интерпретатора Python
+- При скачивания EXE – требуется наличие интерпретатора Python
