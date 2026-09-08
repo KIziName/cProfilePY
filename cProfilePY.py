@@ -33,6 +33,7 @@ def get_python_executable():
     
 
 class ProfilerApp:
+    
     def __init__(self, root):
         self.root = root
         self.root.title(WINDOW_TITLE)
@@ -45,7 +46,6 @@ class ProfilerApp:
         self._build_ui()
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
         
-
     def _build_ui(self):
         main = ttk.Frame(self.root, padding=10)
         main.pack(fill=tk.BOTH, expand=True)
@@ -117,13 +117,11 @@ class ProfilerApp:
         main.columnconfigure(1, weight=1)
         main.rowconfigure(5, weight=1)
         
-
     def browse_script(self):
         filename = filedialog.askopenfilename(filetypes=[("Python files", "*.py")])
         if filename:
             self.script_var.set(filename)
             
-
     def run_profiling(self):
         script_path = self.script_var.get().strip()
         if not script_path:
@@ -171,7 +169,6 @@ class ProfilerApp:
         threading.Thread(target=self._read_output, daemon=True).start()
         threading.Thread(target=self._monitor_process, daemon=True).start()
         
-
     def _read_output(self):
         for line in iter(self.process.stdout.readline, ""):
             if not line:
@@ -179,13 +176,11 @@ class ProfilerApp:
             self.root.after(0, lambda l=line: self.output_text.insert(tk.END, l))
         self.process.stdout.close()
         
-
     def _monitor_process(self):
         self.process.wait()
         self.running = False
         self.root.after(0, self._on_process_done)
         
-
     def _on_process_done(self):
         self.run_btn.config(state=tk.NORMAL)
         self.stop_btn.config(state=tk.DISABLED)
@@ -216,7 +211,6 @@ class ProfilerApp:
 
         self.process = None
         
-
     def stop_profiling(self):
         if self.process and self.process.poll() is None:
             self.output_text.insert(tk.END, "\nStopping by user request...\n")
@@ -235,7 +229,6 @@ class ProfilerApp:
             except Exception as e:
                 self.output_text.insert(tk.END, f"Error while stopping: {e}\n")
 
-    
     def copy_result(self):
         text = self.output_text.get(1.0, tk.END).strip()
         stats = self.stats_text.get(1.0, tk.END).strip()
@@ -247,12 +240,10 @@ class ProfilerApp:
         else:
             self.output_text.insert(tk.END, "\n[No data to copy]\n")
             
-
     def clear_output(self):
         self.output_text.delete(1.0, tk.END)
         self.stats_text.delete(1.0, tk.END)
         
-
     def on_close(self):
         if self.process and self.process.poll() is None:
             try:
