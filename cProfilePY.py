@@ -30,6 +30,7 @@ def get_python_executable():
         return python_exe
     return sys.executable
     
+    
 
 class ProfilerApp:
     def __init__(self, root):
