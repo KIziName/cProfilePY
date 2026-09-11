@@ -73,7 +73,7 @@ class ProfilerApp:
         sort_combo.pack(side=tk.LEFT, padx=(0, 15))
         ttk.Label(sort_frame, text="Limit rows:").pack(side=tk.LEFT, padx=(0, 5))
         self.limit_var = tk.IntVar(value=DEFAULT_LIMIT)
-        ttk.Spinbox(
+        tk.Spinbox(
             sort_frame,
             from_=LIMIT_MIN,
             to=LIMIT_MAX,
@@ -162,7 +162,7 @@ class ProfilerApp:
             cmd,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
-            text=True,
+            universal_newlines=True,
             bufsize=1
         )
 
